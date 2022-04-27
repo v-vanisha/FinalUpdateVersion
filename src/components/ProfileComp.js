@@ -11,6 +11,7 @@ function ProfileComp(){
     const {user} = useContext(AuthContext)
     const [userData, setUserData] = useState({});
     const [questions, setQuestions] = useState([]);
+    const [answers, setAnswers] = useState([]);
 
     // Jab bhi user ki state update hogi tab ye useState chalega
     useEffect(()=>{
@@ -40,7 +41,30 @@ function ProfileComp(){
                     
                 })
                 setQuestions([...tempArray])
-                console.log(questions);
+                // console.log(questions);
+            })
+
+
+
+
+          
+        })();
+    } , [])
+
+    useEffect(()=>{
+        (async()=>{
+            const unsub = await onSnapshot(query(collection(db, "answers"), orderBy("timestamp", "desc")), (snapshot)=>{
+                let tempArray = []
+                snapshot.docs.map((doc)=>{
+                    // console.log(doc.uid)
+                    // console.log(userData?.uid)
+                    if(doc.uid == userData?.uid){
+                        tempArray.push(doc.data())
+                    }
+                    
+                })
+                setAnswers([...tempArray])
+                console.log(answers);
             })
           
         })();
@@ -63,7 +87,7 @@ function ProfileComp(){
                 <hr />
                 <div className = "profile-videos">
                 
-                   <h2>Questions Asked By You:</h2>
+                   <h2 style={{paddingLeft: '18px'}}>Questions Asked By You:</h2>
                    <div className="questions-container">
                        {
                            questions.map((ques)=>{
@@ -73,6 +97,18 @@ function ProfileComp(){
                            })
                        }
                    </div>
+
+                   <h2 style={{paddingLeft: '18px', paddingTop:'30px'}}>Answers Contributed By You:</h2> 
+                   <div className="answers-container">
+                       {
+                           answers.map((ans)=>{
+                            console.log(questions) 
+                               if((ans.ansContent != "") && (ans.uid == userData.uid))
+                               return <div className="profile-ans">{ans.ansContent}</div>
+                           })
+                       }
+                    </div>
+
                 </div>
             </div>
         </>

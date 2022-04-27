@@ -18,6 +18,8 @@ function Ans({answerData, userData, questionData}){
     const [upvote, setUpvote] = useState(false);
     const [downdisable, setDowndisable] = useState(false);
     const [run, setRun] = useState(0);
+    
+
 
     useEffect(()=>{
         (async()=>{

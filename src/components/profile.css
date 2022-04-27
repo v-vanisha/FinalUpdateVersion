@@ -16,6 +16,14 @@
   margin: 15px 15px;
 }
 
+.profile-ans{
+    background-color: aliceblue;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  padding: 10px 10px;
+  margin: 15px 15px;
+}
+
 @media only screen and (max-width:500px){
     .profile-upper{
         flex-direction: column;

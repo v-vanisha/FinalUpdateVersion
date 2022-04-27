@@ -139,7 +139,7 @@ function Login() {
             {/* Forgot password */}
             <div style={{ color: "blue", marginTop: "0.5rem" }}>
             <Link to="/forgotPassword" style={{ textDecoration: "none" }}>
-            Forgot Password ?
+             Forgot Password?
             </Link>
               
             </div>
