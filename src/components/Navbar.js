@@ -272,7 +272,7 @@ const Navbar = ({userData}) => {
 
                 <MenuItem key="Notes" onClick={handleCloseUserMenu}>
               
-              <Link to="/Notes" style={{ textDecoration: "none", color: "black"}}>
+              <Link to="/notes" style={{ textDecoration: "none", color: "black"}}>
                   <Typography textAlign="center">Notes Section</Typography>
               </Link>
                 </MenuItem>

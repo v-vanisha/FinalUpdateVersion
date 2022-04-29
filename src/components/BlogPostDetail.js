@@ -3,7 +3,7 @@ import { getDocs, collection } from "firebase/firestore";
 import { db } from "../firebase";
 import Stack from '@mui/material/Stack';
 import { useParams,Link } from "react-router-dom";
-import { AuthContext } from "../context/auth";
+import BlogNavbar from "./BlogNavbar";
 
 function BlogPostDetail() {
 
@@ -24,9 +24,7 @@ function BlogPostDetail() {
   const params = useParams();
   return (
     <div className="DetailPage">
-      <nav>
-        <Link to="/BlogHome"> Home </Link>
-      </nav>
+       <BlogNavbar/>
       {postLists
         .filter(
           (post) => post.author !== undefined && params.id === post.id

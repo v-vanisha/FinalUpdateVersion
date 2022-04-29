@@ -15,6 +15,8 @@ import PrivateRoute from "./components/PrivateRoute";
 import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import AuthWrapper from "./context/auth";
+import RestrictedRouter from './components/RestrictedRouter';
+import MainCard from "./components/MainCard";
 
 
 function App() {
@@ -30,9 +32,10 @@ function App() {
             <Route path="/signup" element={<Signup />} />
             <Route path="/forgotPassword" element={<ForgotPassword/>} />
             <Route path="/profile" element={<Profile/>} />
-            <Route path="/BlogHome" element={<BlogHome/>} />
-            <Route path="/post/:id" element={<BlogPostDetail/>} />
-            <Route path="/createpost" element={<BlogCreatePost />} />
+            <Route path="/BlogHome" element={ <RestrictedRouter><BlogHome/></RestrictedRouter>} />
+            <Route path="/post/:id" element={<RestrictedRouter><BlogPostDetail/></RestrictedRouter>} />
+            <Route path="/createpost" element={<RestrictedRouter><BlogCreatePost /></RestrictedRouter>} />
+            <Route path="/notes" element={<RestrictedRouter><MainCard /></RestrictedRouter>} />
             <Route
               path="/"
               element={
