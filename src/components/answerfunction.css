@@ -1,0 +1,9 @@
+.ans-icons {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    position: absolute;
+    left: 10px;
+    bottom: 4px;
+    padding-top: 20px;
+}
