@@ -11,6 +11,7 @@ import Post from './Post';
 import Button from '@mui/material/Button';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { Link} from "react-router-dom";
+
  
 function Feed({userData}) {
   const [questionPosts, setQuestionPosts] = useState([]);
@@ -32,13 +33,15 @@ useEffect(()=>{
   return (
     <>
  
-    <div className="feed-cover">
+    <div className="feed-cover" style={{height:"100vh"}}>
  
     {/* left div */}
-    <div>
-    <div className="feed-container">
+    <div style={{width:"75%"}}>
+    <div className="feed-container" >
       <div className="feedUser-info">
-        <Avatar src={userData?.photoUrl}/>
+        <Avatar src={userData?.photoUrl} 
+        // style={{border: "5px solid #e2dbdb",boxShadow: "0px 0px 10px 1px #737380",marginRight:"2px"}}
+        />
         <h3>{userData?.name}</h3>
       </div>
  

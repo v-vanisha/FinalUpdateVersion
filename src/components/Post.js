@@ -85,7 +85,7 @@ const handleClick = ()=>{
             variant="contained"
             onClick = {()=>{handleOpenAnswer()}}
             style={{backgroundColor: '#779ecb',
-  marginLeft: '850px',
+  marginLeft: '825px',
   marginTop: '-90px', padding:'20px 30px', height:'54px'}}
           >
             Add Answer

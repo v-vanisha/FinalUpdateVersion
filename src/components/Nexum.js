@@ -8,6 +8,7 @@ import { useEffect, useContext, useState } from 'react'
 import { doc, collection, onSnapshot, query, orderBy } from 'firebase/firestore'
 import home_bg from "../assets/home_bg.jpg";
 import Footer from "./Footer";
+
 function Nexum(){
  
     const {user} = useContext(AuthContext)
@@ -34,6 +35,7 @@ function Nexum(){
                 <Footer/>
             </div>
         </div>
+        
     )
 }
 export default Nexum;
