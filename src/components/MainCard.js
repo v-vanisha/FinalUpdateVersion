@@ -9,19 +9,28 @@ import { collection, doc, setDoc, addDoc, getDocs, updateDoc, arrayUnion , query
 import { v4 } from "uuid";
 import Card from './Card';
 import './MainCard.css';
-import logo from '../assets/notes_icon.jpeg';
+// import logo from '../assets/notes_icon.jpeg';
+import { Link } from "react-router-dom";
+import NexumNewLogo from "../assets/NexumNewLogo.png";
+import Footer from "./Footer";
 // import { getAuth } from "firebase/auth";
  
  
 function MainCard() {
  
+      function handleMouseEnter(e) {
+        e.target.style.color = "white";
+      }
+      const handleMouseLeave = (e) => {
+        e.target.style.color = "#3b486b";
+      };
+ 
       const [subjectName, setSubjectName]  = useState("Select Subject Name for PDF File"); // string ke liye ""
       const [imageUpload, setImageUpload]  = useState(null); // file ke liye null
       const [loading, setLoading] = useState(false);
       const [switchToggled, setSwitchToggled] = useState(false);
-      // const [files, setFiles] = useState([]);
-      // const [snapshots, setSnapshots] = useState([]);
       const [posts, setPosts] = useState([]);
+      const [data, setData] = useState([]);
       // Code for Dropdown
       var selected = document.querySelector(".selected");
       //var optionsContainer = document.querySelector(".options-container");
@@ -88,8 +97,6 @@ function MainCard() {
                     console.log("snapshot ref " + FileName);
                        
                        
-                     
- 
                        
  
                         //----WILL CREATE COLLECTION HERE----
@@ -103,8 +110,53 @@ function MainCard() {
                         let fileuid = v4();
                         setDoc(doc(db, "files", fileuid ), objNew)
  
- 
+                         
                         // -----------------------------------------
+                        const filesRef = collection(db, "files");
+   
+                        const filesQuery = query(filesRef, where("subjectName", "==", subName));
+                     
+                        console.log("filesQuery : " + filesQuery);
+     
+                        const fetchSubName = async () => {
+   
+                              const querySnapshot = await getDocs(filesQuery);
+                              // setQuerySnapshot(querySnapshot);
+   
+                              console.log("querySnapshot form fetchSubName " + querySnapshot);
+   
+                              if(querySnapshot.docs.length > 0) // if querySnapshot.docs hai tabhi length nhi to leave it
+                              {
+                                    var allSpecificFiles = [];
+                   
+                                        querySnapshot.forEach( doc => {
+                                        console. log("doc "+ doc);
+                                 
+                                        console.log("doc data from card: " + doc.data());
+                                        var data = doc.data();
+                                        data.ID = doc.id;
+                         
+                                        allSpecificFiles.push( {...data} );
+                                   
+                                    });
+                           
+                                    var uid = v4();
+                                    setData(allSpecificFiles);
+                                    console.log("all specific file from card : " + allSpecificFiles);
+                             
+                              }
+                              else
+                              {
+                                  // do nothing
+                                  console.log("No items Corresponding to this subject");
+                                 
+                              }
+   
+                        }                  
+                        fetchSubName()  
+ 
+ 
+                        //---------------------------------------
                         // document.location.reload()
                         setLoading(false);
                   })
@@ -120,6 +172,7 @@ function MainCard() {
         // to display the pdfs in starting only.
         // NOTE: useEffect me koi await hai to how to resolve, make a function async inside it and call it inside like this
       useEffect( ()=>  {
+              setPosts([]);
         // --------------------------------------------------------------
             // Create a query against the collection
               var optionsList = document.querySelectorAll(".option");
@@ -128,8 +181,6 @@ function MainCard() {
               console.log("options list " + optionsList.length);
  
              
-              // let option = "MICROPROCESSOR";
-              var snaps = [];
               optionsList.forEach( (option) => {
  
                     console.log("Entered : ");
@@ -150,7 +201,6 @@ function MainCard() {
                           // setQuerySnapshot(querySnapshot);
  
                           console.log("querySnapshot form fetchSubName " + querySnapshot);
-                          snaps.push(querySnapshot)
  
                           if(querySnapshot.docs.length > 0) // if querySnapshot.docs hai tabhi length nhi to leave it
                           {
@@ -168,6 +218,7 @@ function MainCard() {
                                 });
                          
                                 var uid = v4();
+                                // if( !posts.includes( <Card key={uid} files = { allSpecificFiles } ></Card> ))
                                 setPosts( (prev) => [...prev, <Card key={uid} files = { allSpecificFiles } ></Card>] )
                                 console.log("all specific file from card : " + allSpecificFiles);
                            
@@ -175,57 +226,17 @@ function MainCard() {
                           else
                           {
                               // do nothing
-                              console.log("No items Corresponding to this subjec");
-                           
+                              console.log("No items Corresponding to this subject");
+                             
                           }
  
                     }                  
                     fetchSubName()  
  
               })
-              // setSnapshots( snaps);
-              // console.log("snapshots final "+ snapshots);
-        // ----------------------------------------------------------------------------------------------
- 
- 
-              // snapshots.forEach( (querySnapshot) =>
-              // {
- 
-              //     console.log("querySnapshot from card " + querySnapshot);
-              //     // console.log("querySnapshot.docs.length " + querySnapshot.docs.length);
- 
-              //     if(querySnapshot.docs.length > 0) // if querySnapshot.docs hai tabhi length nhi to leave it
-              //     {
-              //           var allSpecificFiles = [];
-         
-              //               querySnapshot.forEach( doc => {
-              //               console. log("doc "+ doc);
-                       
-              //               console.log("doc data from card: " + doc.data());
-              //               var data = doc.data();
-              //               data.ID = doc.id;
-               
-              //               allSpecificFiles.push( {...data} );
-                         
-              //           });
-                 
-              //           var uid = v4();
-              //           setPosts( (prev) => [...prev, <Card key={uid} files = { allSpecificFiles } ></Card>] )
-              //           console.log("all specific file from card : " + allSpecificFiles);
-                   
-              //     }
-              //     else
-              //     {
-              //         // do nothing
-              //         console.log("No items Corresponding to this subjec");
-                   
-              //     }
-               
-              // })
- 
      
        
-      },[]);
+      },[data]);
  
      
  
@@ -235,120 +246,149 @@ function MainCard() {
    
     <div className="box">
  
-    <div className="heading_bar">
-        <img className="logo" height="70px" src={logo}></img>
-        <h2 className="heading">Subject Notes</h2>
-        <a href="#" className="previous">&laquo; Previous</a>
-    </div>
+      <div className="heading_bar">
+          {/* <img className="logo" height="70px" src={logo}></img> */}
+          <Link to="/">
+                  <img
+                    src={NexumNewLogo}
+                    alt="nexum"
+                    style={{
+                      height: "75px",
+                      width: "auto",
+                      marginTop: "5px",
+                      marginLeft: "60px",
+                    }}
+                  />
+          </Link>
  
-    <div className="pdfData">
+          <h2 className="heading">Subject Notes</h2>
+          {/* <a href="#" className="previous">&laquo; Previous</a> */}
+          <div></div>
+          {/* <Link
+                to="/"
+                onMouseOver={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
+                style={{
+                  marginRight: "30px",
+                  color: "#3b486b",
+                  fontSize: "18px",
+                  fontFamily: "initial",
+                  fontWeight: "bold",
+                }}
+              >
+              HOME
+          </Link> */}
+      </div>
+ 
+      <div className="pdfData">
        
-        <div className="Course">
+          <div className="Course">
            
-            {/* USING RADIO BUTTON and not dropdown or anything as it provide more functionality for css */}
-            {/* First Vala iss normal text baki radio button hai jiska display hide kiya hai to ek time pe ek he select hoga */}
+              {/* USING RADIO BUTTON and not dropdown or anything as it provide more functionality for css */}
+              {/* First Vala iss normal text baki radio button hai jiska display hide kiya hai to ek time pe ek he select hoga */}
  
-            {/* Now Active class ko hume Using javascript add or remove karna hai jo display and hide karegihumara pura jo ye box of category hai */}
-            <div className="select-box">
+              {/* Now Active class ko hume Using javascript add or remove karna hai jo display and hide karegihumara pura jo ye box of category hai */}
+              <div className="select-box">
  
-              <div className={ `options-container ${switchToggled ? "active" : ""}` }>
+                <div className={ `options-container ${switchToggled ? "active" : ""}` }>
                
-                <div className="option">
-                  <input type="radio" class="radio" id="microprocessor" name="category"></input>
-                  <label for="microprocessor">Microprocessor</label>
+                  <div className="option">
+                    <input type="radio" class="radio" id="microprocessor" name="category"></input>
+                    <label for="microprocessor">Microprocessor</label>
+                  </div>
+ 
+                  <div className="option">
+                    <input type="radio" class="radio" id="DS" name="category"></input>
+                    <label for="DS">Data Structures</label>
+                  </div>
+ 
+                  <div className="option">
+                    <input type="radio" class="radio" id="DAA" name="category"></input>
+                    <label for="DAA">Design and Analysis of Alogorithms</label>
+                  </div>
+ 
+                  <div className="option">
+                    <input type="radio" class="radio" id="DBMS" name="category"></input>
+                    <label for="DBMS">DBMS</label>
+                  </div>
+ 
+                  <div className="option">
+                    <input type="radio" class="radio" id="statistics" name="category"></input>
+                    <label for="statistics">Statistics</label>
+                  </div>
+ 
+                  <div className="option">
+                    <input type="radio" class="radio" id="ML" name="category"></input>
+                    <label for="ML">Machine Learning</label>
+                  </div>
+ 
+                  <div className="option">
+                    <input type="radio" class="radio" id="DM" name="category"></input>
+                    <label for="DM">Discrete Mathematics</label>
+                  </div>
+ 
+                  <div className="option">
+                    <input type="radio" class="radio" id="TOC" name="category"></input>
+                    <label for="TOC">Theory of Computation</label>
+                  </div>
+ 
+                  <div className="option">
+                    <input type="radio" class="radio" id="entrepreneurship" name="category"></input>
+                    <label for="entrepreneurship">Entrepreneurship</label>
+                  </div>
+ 
+                  <div className="option">
+                    <input type="radio" class="radio" id="DE" name="category"></input>
+                    <label for="DE">Differential Equations</label>
+                  </div>
+ 
                 </div>
  
-                <div className="option">
-                  <input type="radio" class="radio" id="DS" name="category"></input>
-                  <label for="DS">Data Structures</label>
-                </div>
- 
-                <div className="option">
-                  <input type="radio" class="radio" id="DAA" name="category"></input>
-                  <label for="DAA">Design and Analysis of Alogorithms</label>
-                </div>
- 
-                <div className="option">
-                  <input type="radio" class="radio" id="DBMS" name="category"></input>
-                  <label for="DBMS">DBMS</label>
-                </div>
- 
-                <div className="option">
-                  <input type="radio" class="radio" id="statistics" name="category"></input>
-                  <label for="statistics">Statistics</label>
-                </div>
- 
-                <div className="option">
-                  <input type="radio" class="radio" id="ML" name="category"></input>
-                  <label for="ML">Machine Learning</label>
-                </div>
- 
-                <div className="option">
-                  <input type="radio" class="radio" id="DM" name="category"></input>
-                  <label for="DM">Discrete Mathematics</label>
-                </div>
- 
-                <div className="option">
-                  <input type="radio" class="radio" id="TOC" name="category"></input>
-                  <label for="TOC">Theory of Computation</label>
-                </div>
- 
-                <div className="option">
-                  <input type="radio" class="radio" id="entrepreneurship" name="category"></input>
-                  <label for="entrepreneurship">Entrepreneurship</label>
-                </div>
- 
-                <div className="option">
-                  <input type="radio" class="radio" id="DE" name="category"></input>
-                  <label for="DE">Differential Equations</label>
-                </div>
- 
-              </div>
- 
-            {/* Keeping it below/last, but by ording bringing to the top */}
-            {/* Beacuase in CSS, we dont have selector to select an element before some element , we can select element after an element */}
+              {/* Keeping it below/last, but by ording bringing to the top */}
+              {/* Beacuase in CSS, we dont have selector to select an element before some element , we can select element after an element */}
            
-              <div className="selected" onClick={setActive_Toggle}  >
-                Select Subject Name for PDF File
+                <div className="selected" onClick={setActive_Toggle}  >
+                  Select Subject Name for PDF File
+                </div>
+ 
               </div>
  
-            </div>
- 
-        </div>
+          </div>
          
-        <div className="upload_field">
-          <input className="pdfData" type="file" accept="application/pdf"  onChange = { (e)=> { setImageUpload(e.target.files[0]) } } ></input>
-          <button type="submit" disabled={loading} className="submitBtn" onClick={ uploadPdf }>Upload</button>            
-        </div>
+          <div className="upload_field">
+            <input className="pdfData" type="file" accept="application/pdf"  onChange = { (e)=> { setImageUpload(e.target.files[0]) } } ></input>
+            <button type="submit" disabled={loading} className="submitBtn" onClick={ uploadPdf }>Upload</button>            
+          </div>
  
-    </div>
+      </div>
  
-    {/* NEVER WRITE setState() inside THE LOOP -- infinite loop*/}
-    {/* To return the component written inside the any Loop , we are using post array, store them and then return all posts at once */}
-    {/* key={dObj.subName} */}
-    {/* convertinh HTML to JS -- by extra {} */}
-    {/* {(function(){} )()} --> {( ()=>{} )()}  or   { ( function(){} ) ()} -->  this is IIFE immediately-invoked function expression (IIFE) immediately calls a function. This simply means that the function is executed immediately after the completion of the definition.*/}
+      {/* NEVER WRITE setState() inside THE LOOP -- infinite loop*/}
+      {/* To return the component written inside the any Loop , we are using post array, store them and then return all posts at once */}
+      {/* key={dObj.subName} */}
+      {/* convertinh HTML to JS -- by extra {} */}
+      {/* {(function(){} )()} --> {( ()=>{} )()}  or   { ( function(){} ) ()} -->  this is IIFE immediately-invoked function expression (IIFE) immediately calls a function. This simply means that the function is executed immediately after the completion of the definition.*/}
  
-{/* -------------------------------------------------------------------------- */}
+  {/* -------------------------------------------------------------------------- */}
  
-    <div className="data">
-      {posts}
-    </div>
+      <div className="data">
+        {posts}
+      </div>
    
  
-    {/* <div className="searchBox">
-      <SearchRounded className="searchIcon"/>
-      <TextField
+      {/* <div className="searchBox">
+        <SearchRounded className="searchIcon"/>
+        <TextField
          
-          id="inputSearch"
-          label="Search field"
-          type="search"
-          variant="standard"
-          className="inputText"
-      />
-    </div> */}    
- 
- 
+            id="inputSearch"
+            label="Search field"
+            type="search"
+            variant="standard"
+            className="inputText"
+        />
+      </div> */}    
+      <div className="footer" style={{width:"100%",color:"#ffffff"}}>
+        <Footer/>
+      </div>
   </div>  
  
  );

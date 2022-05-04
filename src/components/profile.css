@@ -1,31 +1,43 @@
-.profile-upper{
+.ProfileCover {
+    background-image: url("../assets/home_bg.jpg");
+    background-size: cover;
+    background-attachment: fixed;
+    height: 100vh;
+}
+
+.profile-upper {
     margin-left: 18%;
     margin-right: 18%;
-    margin-top: 5%;
+    padding-top: 5%;
     margin-bottom: 5%;
     display: flex;
     align-items: center;
     justify-content: space-around;
+    font-family: unset;
 }
 
-.profile-ques{
+.profile-ques {
     background-color: aliceblue;
-  border: 1px solid lightgray;
-  border-radius: 5px;
-  padding: 10px 10px;
-  margin: 15px 15px;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    padding: 10px 10px;
+    margin: 15px 15px;
+    font-style: italic;
+    font-family: ui-monospace;
 }
 
-.profile-ans{
+.profile-ans {
     background-color: aliceblue;
-  border: 1px solid lightgray;
-  border-radius: 5px;
-  padding: 10px 10px;
-  margin: 15px 15px;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    padding: 10px 10px;
+    margin: 15px 15px;
+    font-style: italic;
+    font-family: ui-monospace;
 }
 
-@media only screen and (max-width:500px){
-    .profile-upper{
+@media only screen and (max-width:500px) {
+    .profile-upper {
         flex-direction: column;
     }
 }

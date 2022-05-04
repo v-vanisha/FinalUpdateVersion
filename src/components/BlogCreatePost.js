@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { addDoc, collection } from "firebase/firestore";
+import { Timestamp,addDoc, collection } from "firebase/firestore";
 import { db, auth, storage } from "../firebase";
 import { useNavigate, Link } from "react-router-dom";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
@@ -81,6 +81,7 @@ function BlogCreatePost() {
         postText,
         cover,
         author: { name: name, id: auth.currentUser.uid },
+        createdAt: Timestamp.now().toDate(),
       });
     } else {
       const cover = Blogfile.name + v4();
@@ -95,6 +96,7 @@ function BlogCreatePost() {
             postText,
             cover: { url },
             author: { name: name, id: auth.currentUser.uid },
+            createdAt: Timestamp.now().toDate(),
           });
         });
       });

@@ -1,23 +1,70 @@
-.login-container{
+.login-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 3rem;
+    /* margin-top: 14rem; */
     text-align: center;
-}
-.login-card{
-    width: 20rem;
-    border: 1px solid #ccc;
-    padding: 1rem;
+    height: 100vh;
+    left: 0;
+    top: 0;
+    animation: animate 22s infinite;
+    background-size: cover;
+    background-position: center;
+    /* background-repeat: no-repeat; */
 }
 
-.login-bottom-card{
-    width: 20rem;
+@keyframes animate {
+    0%,
+    100% {
+        background-image: url("../assets/login_1.jpg");
+    }
+    12.5% {
+        background-image: url("../assets/login_2.jpg");
+    }
+    25% {
+        background-image: url("../assets/login_3.jpg");
+    }
+    37.5% {
+        background-image: url("../assets/login_4.jpg");
+    }
+    50% {
+        background-image: url("../assets/login_5.jpg");
+    }
+    62.5% {
+        background-image: url("../assets/login_6.jpg");
+    }
+    87.5% {
+        background-image: url("../assets/login_8.jpg");
+    }
+}
+
+.login-card {
+    width: 23rem;
+    border: 1px solid #ccc;
+    padding: 1rem;
+    padding-top: 2.5rem;
+    background-color: #cac7c7;
+    border-radius: 20px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.23), 0 6px 6px rgba(0, 0, 0, 0.23);
+}
+
+.login-card .Logo {
+    height: 140px;
+    width: 170px;
+    padding-bottom: 25px;
+}
+
+.login-bottom-card {
+    width: 23rem;
     margin-top: 1rem;
     padding: 1rem;
     border: 1px solid #ccc;
+    background-color: #cac7c7;
+    border-radius: 20px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.23), 0 6px 6px rgba(0, 0, 0, 0.23);
 }
-.carbg{
+
+.carbg {
     background: url('../assets/nexumImg2.jpg');
     background-size: cover;
     height: 500px;
@@ -26,33 +73,36 @@
     position: relative;
 }
 
-.car{
-   height: 1000px;
-   position: absolute;
-   top: 45px;
-   left: 42px; 
+.car {
+    height: 1000px;
+    position: absolute;
+    top: 45px;
+    left: 42px;
 }
-@media only screen and (max-width:500px){
-    .login-card{
+
+@media only screen and (max-width:500px) {
+    .login-card {
         width: 100%;
     }
-    .bottom-card{
+    .bottom-card {
         width: 100%;
     }
-    .carbg{
-        display:none;
+    .carbg {
+        display: none;
     }
 }
-@media only screen and (max-width:800px){
-    .login-card{
+
+@media only screen and (max-width:800px) {
+    .login-card {
         width: 15rem;
     }
-    .bottom-card{
+    .bottom-card {
         width: 15rem;
     }
 }
-@media only screen and (max-width:700px){
-    .carbg{
-        display:none;
+
+@media only screen and (max-width:700px) {
+    .carbg {
+        display: none;
     }
 }

@@ -1,30 +1,75 @@
-.signup-container{
+.signup-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 8rem;
     text-align: center;
     flex-direction: column;
+    height: 100vh;
+    left: 0;
+    top: 0;
+    animation: animate 22s infinite;
+    background-size: cover;
+    background-position: center;
 }
 
-.signup-card{
+@keyframes animate {
+    0%,
+    100% {
+        background-image: url("../assets/login_1.jpg");
+    }
+    12.5% {
+        background-image: url("../assets/login_2.jpg");
+    }
+    25% {
+        background-image: url("../assets/login_3.jpg");
+    }
+    37.5% {
+        background-image: url("../assets/login_4.jpg");
+    }
+    50% {
+        background-image: url("../assets/login_5.jpg");
+    }
+    62.5% {
+        background-image: url("../assets/login_6.jpg");
+    }
+    87.5% {
+        background-image: url("../assets/login_8.jpg");
+    }
+}
+
+.signup-card {
     width: 25rem;
-    border: 1px solid #ccc;
+    border-radius: 20px;
     padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    background-color: #cac7c7;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.23), 0 6px 6px rgba(0, 0, 0, 0.23);
 }
 
-.bottom-card{
+.signup-card img {
+    height: 140px;
+    padding-bottom: 20px;
+}
+
+.bottom-card {
     width: 25rem;
     margin-top: 1rem;
     padding: 1rem;
-    border: 1px solid #ccc;
+    background-color: #cac7c7;
+    border-radius: 20px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.23), 0 6px 6px rgba(0, 0, 0, 0.23);
 }
 
-@media only screen and (max-width:500px){
-    .signup-card{
+@media only screen and (max-width:500px) {
+    .signup-card {
         width: 100%;
     }
-    .bottom-card{
+    .bottom-card {
         width: 100%;
     }
 }

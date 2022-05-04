@@ -73,10 +73,10 @@ function ProfileComp(){
     return(
         <>
             <Navbar userData={userData}/>
-            <div>
+            <div className="ProfileCover">
                 <div className = "profile-upper">
                     <img src = {userData?.photoUrl} style={{height:"8rem", width:"8rem", borderRadius:"50%"}}/>
-                    <div style={{flexBasis:"40%"}}>
+                    <div style={{flexBasis:"40%",fontFamily: "unset"}}>
                         <h1>{(userData?.name)?.toUpperCase()}</h1>
                     </div>
                     
@@ -93,7 +93,7 @@ function ProfileComp(){
                            questions.map((ques)=>{
                             console.log(questions)
                                if((ques.quesContent != "") && (ques.uid == userData.uid))
-                               return <div className="profile-ques">{ques.quesContent}</div>
+                               return <div className="profile-ques" style={{fontFamily:"ui-monospace"}}>{ques.quesContent}</div>
                            })
                        }
                    </div>
@@ -104,7 +104,7 @@ function ProfileComp(){
                            answers.map((ans)=>{
                             console.log(questions) 
                                if((ans.ansContent != "") && (ans.uid == userData.uid))
-                               return <div className="profile-ans">{ans.ansContent}</div>
+                               return <div className="profile-ans" style={{fontFamily:"ui-monospace"}}>{ans.ansContent}</div>
                            })
                        }
                     </div>

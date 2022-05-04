@@ -17,7 +17,6 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import AuthWrapper from "./context/auth";
 import RestrictedRouter from './components/RestrictedRouter';
 
-
 function App() {
  
   return (

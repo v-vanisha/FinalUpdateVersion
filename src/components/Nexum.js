@@ -6,8 +6,8 @@ import { AuthContext } from '../context/auth';
 import { db } from "../firebase";
 import { useEffect, useContext, useState } from 'react'
 import { doc, collection, onSnapshot, query, orderBy } from 'firebase/firestore'
-
-
+import home_bg from "../assets/home_bg.jpg";
+import Footer from "./Footer";
 function Nexum(){
  
     const {user} = useContext(AuthContext)
@@ -27,9 +27,12 @@ function Nexum(){
     }, [user])
     // console.log("Nexum is having userData as"+userData);
     return(
-        <div>
+        <div className="FeedBg" style={{backgroundImage:`url(${home_bg})`,backgroundSize:"cover",backgroundAttachment:"fixed"}}>
             <Navbar userData={userData}/>
             <Feed userData={userData}/>
+            <div className="footer" style={{backgroundColor:"#ffffff",marginTop:"40px"}}>
+                <Footer/>
+            </div>
         </div>
     )
 }

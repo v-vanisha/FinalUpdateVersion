@@ -3,13 +3,14 @@ body {
     margin: 0%;
     font-family: Arial, Helvetica, sans-serif;
     /* text-align: center; */
+    /* background-image: url("../assets/home_bg.jpg"); */
 }
 
 nav {
     margin: 0;
     width: 100%;
     height: 80px;
-    background-color: black;
+    /* background-color: black; */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -18,13 +19,16 @@ nav {
 }
 
 a {
-    color: white;
+    /* color: white; */
     text-decoration: none;
     font-size: 25px;
 }
 
 .homePage {
     width: 100%;
+    background-image: url("../assets/home_bg.jpg");
+    background-size: cover;
+    background-attachment: fixed;
     min-height: calc(100vh - 80px);
     height: auto;
     display: flex;
@@ -38,11 +42,12 @@ a {
     width: 600px;
     height: auto;
     max-height: 600px;
-    background-color: rgb(250, 250, 250);
+    background-color: #c7dce7;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     margin: 20px;
     padding: 20px;
     border-radius: 15px;
+    font-family: system-ui;
 }
 
 .post .postHeader {
@@ -57,6 +62,7 @@ a {
     padding-top: 5px;
     font-size: 30px;
     font-weight: bold;
+    color: black;
 }
 
 .postHeader .title h1 {
@@ -64,7 +70,7 @@ a {
 }
 
 .postHeader a {
-    color: rgb(67, 67, 136);
+    color: rgb(32, 32, 50);
 }
 
 .subTitle {

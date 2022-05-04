@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
-import { getDocs, collection, deleteDoc, doc,onSnapshot,query } from "firebase/firestore";
+import { getDocs,orderBy, collection, deleteDoc, doc,onSnapshot,query } from "firebase/firestore";
 import { auth, db, storage } from "../firebase";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/auth";
@@ -56,10 +56,10 @@ function BlogHome({ userData }) {
     e.target.style.color = "#3b486b"
   }
 
-  // Navbar
 
+
+  // Navbar
   const [postLists, setPostList] = useState([]);
-  const postsCollectionRef = collection(db, "posts");
 
   const deletePost = async (id, url) => {
     const postDoc = doc(db, "posts", id);
@@ -79,7 +79,7 @@ function BlogHome({ userData }) {
 
   useEffect(() => {
     const postsCollectionRef = collection(db, "posts");
-    const q = query(postsCollectionRef);
+    const q = query(postsCollectionRef,orderBy("createdAt","desc"));
     onSnapshot(q, (snapshot) => {
       const articles = snapshot.docs.map((doc) => ({
         ...doc.data(),
@@ -97,7 +97,7 @@ function BlogHome({ userData }) {
   }, [deletePost]);
 
   return (
-    <div className="homePage" >
+    <div className="homePage">
       {/* Navbar */}
       <AppBar
         position="static"
@@ -189,39 +189,6 @@ function BlogHome({ userData }) {
                 display: { xs: "none", md: "flex" },
               }}
             >
-              {/* <Link to ="/">
-          <HomeIcon fontSize="large" sx={{ mx: 2, color: "black" }} />
-          </Link> */}
-
-              {/* <NotificationsActiveIcon
-              fontSize="large"
-              sx={{ mx: 2, color: "black" }}
-            /> */}
-              {/* <LanguageIcon fontSize="large" sx={{ mx: 2, color: "black" }} /> */}
-              {/* <Search sx={{ mr: 2 }}>
-              <SearchIconWrapper style={{ textAlign: "center" }}>
-                <SearchIcon />
-              </SearchIconWrapper>
-              <StyledInputBase
-                autoFocus 
-              // selected="true"
-                placeholder="Search…"
-                type="text"
-                onChange={(e)=>{handleSearchData(e.target.value)}}
-                value={searchData}
-                />
-              
-            </Search> */}
-              {/* <Link to ="/BlogHome">
-              <Button
-                variant="contained"
-                color="success"
-                style={{ height: "50px" }}
-                onClick = {()=>{handleOpen()}}
-              >
-              Blogs
-              </Button>
-            </Link> */}
               <Link
                 to="/createpost"
                 onMouseOver={handleMouseEnter}
@@ -234,13 +201,7 @@ function BlogHome({ userData }) {
                   fontWeight: "bold",
                 }}
               >
-                {/* <Button
-              variant="contained"
-              color="success"
-              style={{ height: "50px" }}
-            > */}
                 CREATE POST
-                {/* </Button> */}
               </Link>
             </Box>
           </Toolbar>
@@ -257,10 +218,10 @@ function BlogHome({ userData }) {
           .filter((post) => post.author !== undefined)
           .map((post) => {
             return (
-              <div className="post" key={post.id}>
+              <div className="post"  key={post.id}>
                 <Stack direction="column" spacing={2}>
                   <div className="postHeader">
-                    <div className="title">
+                    <div className="title" style={{textTransform:"capitalize"}}>
                       <Link to={`/post/${post.id}`}>{post.title}</Link>
                     </div>
                     <div className="deletePost">
@@ -277,10 +238,10 @@ function BlogHome({ userData }) {
                     </div>
                   </div>
                   <div className="subTitle">
-                    <p>{post.subTitle}</p>
+                    <p style={{textTransform:"capitalize",marginTop:"-1px"}}>{post.subTitle}</p>
                   </div>
                   {/* <div className="postTextContainer"> {post.postText} </div> */}
-                  <h3>@{post.author.name}</h3>
+                  <h3 style={{textTransform:"capitalize",marginTop:"8px"}}>~ {post.author.name}</h3>
                 </Stack>
               </div>
             );

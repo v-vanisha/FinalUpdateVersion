@@ -4,7 +4,7 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { AuthContext } from "../context/auth";
 import { Link, useNavigate } from "react-router-dom";
-import nexumLogo from "../assets/nexumLogo.jpg";
+import NexumNewLogo from "../assets/NexumNewLogo.png";
 import "./signup.css";
 import { setDoc, doc } from "firebase/firestore"; 
 import {
@@ -87,11 +87,12 @@ function Signup(){
       navigate("/");
     }
   }, [user]);
+  
     return(
         <div className="signup-container">
         {/* Upper Box */}
         <div className="signup-card">
-          <img src={nexumLogo} />
+          <img src={NexumNewLogo} />
           <TextField
             size="small"
             margin="dense"
@@ -176,7 +177,7 @@ function Signup(){
         <div className="bottom-card">
           Already Have an Account ?
           <Link to="/login">
-            <span style={{ color: "blue", cursor: "pointer", fontSize:"15px" }}>Login</span>
+            <span style={{ color: "blue", cursor: "pointer", fontSize:"17px",padding:"3px" }}>Login</span>
           </Link>
         </div>
       </div>

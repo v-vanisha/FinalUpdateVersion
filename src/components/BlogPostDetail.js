@@ -25,7 +25,7 @@ function BlogPostDetail() {
 
   const params = useParams();
   return (
-    <div className="DetailContainer" style={{height: "100%",backgroundImage:`url(${blogbackground})`}}>
+    <div className="DetailContainer" style={{height: "100%",backgroundImage:`url(${blogbackground})`,backgroundSize: "cover",backgroundAttachment: "fixed"}}>
       <div className="DetailPage" >
         <BlogNavbar/>
         {postLists

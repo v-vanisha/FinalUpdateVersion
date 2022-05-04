@@ -7,7 +7,7 @@ import Button from "@mui/material/Button";
 import { Link, useNavigate } from "react-router-dom";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import nexumLogo from "../assets/nexumLogo.jpg";
+import NexumNewLogo from "../assets/NexumNewLogo.png";
 import nexumImg2 from "../assets/nexumImg2.jpg";
 import nexumImg3 from "../assets/nexumImg3.jpg";
 import nexumImg4 from "../assets/nexumImg4.jpg";
@@ -62,12 +62,9 @@ function ForgotPassword() {
       <div className="login-container">
         {/* leftBox */}
         {/* This div is for fixed tablet image */}
-        <div
-          className="carbg"
-          style={{ marginRight: "190px", paddingLeft: "10px" }}
-        >
+
           {/* This div is for caraousel */}
-          <div className="car">
+          {/* <div className="car">
             <Carousel
               autoPlay={true}
               infiniteLoop={true}
@@ -91,15 +88,15 @@ function ForgotPassword() {
               <img style={{ height: "410px" }} src={nexumImg12} />
               <img style={{ height: "410px" }} src={nexumImg13} />
             </Carousel>
-          </div>
-        </div>
+          </div> */}
+        {/* </div> */}
 
         {/* rightBox */}
         <div className="right">
           {/* loginPortion */}
           <div className="login-card">
             {/* put the logo */}
-            <img src={nexumLogo} />
+            <img src={NexumNewLogo} style={{height: "140px",width:"170px",paddingBottom: "25px"}} />
             {/* Enter the email */}
             <TextField
               size="small"
@@ -134,8 +131,8 @@ function ForgotPassword() {
 
           {/* lower box */}
           <div className="login-bottom-card">
-            Don&apos;t Have an Account ?
-            <Link to="/signup" style={{ textDecoration: "none" }}>
+            <span style= {{ textDecoration: "none",fontSize:"15px"}}>Don&apos;t Have an Account ?</span>
+            <Link to="/signup" style={{ textDecoration: "none",fontSize:"15px",paddingLeft:"3px",color:"blue"}}>
               Sign Up
             </Link>
           </div>

@@ -5,21 +5,29 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { Link, useNavigate } from "react-router-dom";
-import { Carousel } from "react-responsive-carousel";
+// import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import nexumLogo from "../assets/nexumLogo.jpg";
-import nexumImg2 from "../assets/nexumImg2.jpg";
-import nexumImg3 from "../assets/nexumImg3.jpg";
-import nexumImg4 from "../assets/nexumImg4.jpg";
-import nexumImg5 from "../assets/nexumImg5.jpg";
-import nexumImg6 from "../assets/nexumImg6.jpg";
-import nexumImg7 from "../assets/nexumImg7.jpg";
-import nexumImg8 from "../assets/nexumImg8.jpg";
-import nexumImg9 from "../assets/nexumImg9.jpg";
-import nexumImg10 from "../assets/nexumImg10.jpg";
-import nexumImg11 from "../assets/nexumImg11.jpg";
-import nexumImg12 from "../assets/nexumImg12.jpg";
-import nexumImg13 from "../assets/nexumImg13.jpg";
+import NexumNewLogo from "../assets/NexumNewLogo.png";
+// import nexumImg2 from "../assets/nexumImg2.jpg";
+// import nexumImg3 from "../assets/nexumImg3.jpg";
+// import nexumImg4 from "../assets/nexumImg4.jpg";
+// import nexumImg5 from "../assets/nexumImg5.jpg";
+// import nexumImg6 from "../assets/nexumImg6.jpg";
+// import nexumImg7 from "../assets/nexumImg7.jpg";
+// import nexumImg8 from "../assets/nexumImg8.jpg";
+// import nexumImg9 from "../assets/nexumImg9.jpg";
+// import nexumImg10 from "../assets/nexumImg10.jpg";
+// import nexumImg11 from "../assets/nexumImg11.jpg";
+// import nexumImg12 from "../assets/nexumImg12.jpg";
+// import nexumImg13 from "../assets/nexumImg13.jpg";
+import Login_1 from "../assets/login_1.jpg";
+import Login_2 from "../assets/login_2.jpg";
+import Login_3 from "../assets/login_3.jpg";
+import Login_4 from "../assets/login_4.jpg";
+import Login_5 from "../assets/login_5.jpg";
+import Login_6 from "../assets/login_6.jpg";
+import Login_7 from "../assets/login_7.jpg";
+import Login_8 from "../assets/login_8.jpg";
 import { AuthContext } from "../context/auth";
 
 function Login() {
@@ -57,17 +65,20 @@ function Login() {
     }
   }, [user]);
 
+
+
+
   return (
     <>
       <div className="login-container">
         {/* leftBox */}
         {/* This div is for fixed tablet image */}
-        <div
+        {/* <div
           className="carbg"
           style={{ marginRight: "190px", paddingLeft: "10px" }}
-        >
+        > */}
           {/* This div is for caraousel */}
-          <div className="car">
+          {/* <div className="car">
             <Carousel
               autoPlay={true}
               infiniteLoop={true}
@@ -91,15 +102,16 @@ function Login() {
               <img style={{ height: "410px" }} src={nexumImg12} />
               <img style={{ height: "410px" }} src={nexumImg13} />
             </Carousel>
-          </div>
-        </div>
+          </div> */}
+        {/* </div> */}
 
         {/* rightBox */}
         <div className="right">
           {/* loginPortion */}
+          
           <div className="login-card">
             {/* put the logo */}
-            <img src={nexumLogo} />
+            <img className="Logo" src={NexumNewLogo} />
             {/* Enter the email */}
             <TextField
               size="small"
@@ -130,7 +142,7 @@ function Login() {
             <Button
               variant="contained"
               fullWidth
-              style={{ marginTop: "0.8rem" }}
+              style={{ marginTop: "0.8rem",marginBottom:"0.7rem" }}
               onClick={handleClick}
             >
               Login
@@ -138,7 +150,7 @@ function Login() {
 
             {/* Forgot password */}
             <div style={{ color: "blue", marginTop: "0.5rem" }}>
-            <Link to="/forgotPassword" style={{ textDecoration: "none" }}>
+            <Link to="/forgotPassword" style={{ textDecoration: "none",color: "#39447e", marginTop: "1rem",fontSize:"20px"}}>
              Forgot Password?
             </Link>
               

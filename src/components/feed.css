@@ -1,42 +1,71 @@
-.feed-container {
-  display: flex;
-  width: 75%;
-  margin: auto;
-  margin-top: 50px;
-  flex-direction: column;
-  padding: 10px;
-  border: 1px solid lightgrey;
-  cursor: pointer;
-}
-.feed-container:hover {
-  border: 1px solid gray;
-}
-.feedUser-info {
-  display: flex;
-  border: 1px solid lightgrey;
-  background-color: aliceblue;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 15px;
+.feed-cover {
+    display: flex;
+    justify-content: space-evenly;
 }
 
-.feedUser-info > h5 {
-  color: rgb(129, 129, 129);
-  font-weight: 300;
-  margin-left: 10px;
+.feed-container {
+    display: flex;
+    margin: auto;
+    margin-top: 50px;
+    flex-direction: column;
+    padding: 10px;
+    border: 1px solid lightgrey;
+    cursor: pointer;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.23), 0 6px 6px rgba(0, 0, 0, 0.23);
+}
+
+.feed-compos {
+    display: flex;
+    flex-direction: column;
+    background-color: aliceblue;
+    height: 250px;
+    width: 210px;
+    justify-content: space-evenly;
+    align-content: stretch;
+    margin-top: 100px;
+    border: 1px solid lightgray;
+    border-radius: 12px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.23), 0 6px 6px rgba(0, 0, 0, 0.23);
+}
+
+.up {
+    margin: auto;
+}
+
+.down {
+    margin: auto;
+}
+
+.feed-container:hover {
+    border: 1px solid gray;
+}
+
+.feedUser-info {
+    display: flex;
+    border: 1px solid lightgrey;
+    background-color: aliceblue;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.feedUser-info>h5 {
+    color: rgb(129, 129, 129);
+    font-weight: 300;
+    margin-left: 10px;
 }
 
 .feed-ques {
-  width: 75%;
-  margin: auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+    width: 75%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
-.feed-ques > p {
-  color: gray;
-  font-weight: bold;
-  font-size: large;
+.feed-ques>p {
+    color: gray;
+    font-weight: bold;
+    font-size: large;
 }

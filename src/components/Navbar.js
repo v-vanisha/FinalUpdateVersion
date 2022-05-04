@@ -13,7 +13,7 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
-import nexumLogo from "../assets/nexumLogo.jpg";
+import nexumLogo from "../assets/NexumNewLogo.png";
 import HomeIcon from "@mui/icons-material/Home";
 import LanguageIcon from "@mui/icons-material/Language";
 import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
@@ -25,9 +25,9 @@ import { AuthContext } from "../context/auth";
 import { Link, useNavigate} from "react-router-dom";
 const pages = ["Home", "Notifications", "Ask Questions"];
 // const settings = ["Profile"];
-
-
-
+ 
+ 
+ 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
   borderRadius: theme.shape.borderRadius,
@@ -42,7 +42,7 @@ const Search = styled("div")(({ theme }) => ({
     width: "auto",
   },
 }));
-
+ 
 const SearchIconWrapper = styled("div")(({ theme }) => ({
   padding: theme.spacing(0, 2),
   height: "100%",
@@ -52,7 +52,7 @@ const SearchIconWrapper = styled("div")(({ theme }) => ({
   alignItems: "center",
   justifyContent: "center",
 }));
-
+ 
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
   color: "inherit",
   "& .MuiInputBase-input": {
@@ -69,26 +69,26 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     },
   },
 }));
-
+ 
 const Navbar = ({userData}) => {
   // console.log(userData);
   const navigate = useNavigate();
   const { logout, handleOpen, searchData, handleSearchData } = useContext(AuthContext);
-  
+ 
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
-
+ 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
   };
-
+ 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
-
+ 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
@@ -101,7 +101,7 @@ const Navbar = ({userData}) => {
     <AppBar
       position="static"
       className="navbar-container"
-      style={{ backgroundColor: "white" }}
+      style={{backgroundColor: "#E1EBEE"}}
     >
       <Container maxWidth="xl">
         <Toolbar disableGutters>
@@ -115,12 +115,12 @@ const Navbar = ({userData}) => {
           <img
               src={nexumLogo}
               alt="nexum"
-              style={{ height: "40px", width: "150px" }}
+              style={{height:'55px', width:'auto', paddingTop:'5px', marginBottom:'-2px'}}
             />
           </Link>
-            
+           
           </Typography>
-
+ 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
               size="large"
@@ -169,7 +169,7 @@ const Navbar = ({userData}) => {
               style={{ height: "40px", width: "150px" }}
             />
           </Typography>
-
+ 
           <Box
             mr={2}
             sx={{
@@ -182,7 +182,7 @@ const Navbar = ({userData}) => {
           {/* <Link to ="/">
           <HomeIcon fontSize="large" sx={{ mx: 2, color: "black" }} />
           </Link> */}
-            
+           
             {/* <NotificationsActiveIcon
               fontSize="large"
               sx={{ mx: 2, color: "black" }}
@@ -193,14 +193,14 @@ const Navbar = ({userData}) => {
                 <SearchIcon />
               </SearchIconWrapper>
               <StyledInputBase
-                autoFocus 
+                autoFocus
               // selected="true"
                 placeholder="Search…"
                 type="text"
                 onChange={(e)=>{handleSearchData(e.target.value)}}
                 value={searchData}
                 />
-              
+             
             </Search> */}
             {/* <Link to ="/BlogHome">
               <Button
@@ -214,21 +214,20 @@ const Navbar = ({userData}) => {
             </Link> */}
             <Button
               variant="contained"
-              color="success"
-              style={{ height: "50px" }}
+              style={{ height: "50px", backgroundColor:'#00CCCC' }}
               onClick = {()=>{handleOpen()}}
             >
               Add Question
             </Button>
           </Box>
-            
+           
             <div style={{display:'none'}}>
-            
+           
             <QuestionModal userData={userData}/>
             </div>
            
-            
-
+           
+ 
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
@@ -257,28 +256,15 @@ const Navbar = ({userData}) => {
                 </MenuItem>
               ))} */}
               <MenuItem key="Profile" onClick={handleCloseUserMenu}>
-              
+             
               <Link to="/profile" style={{ textDecoration: "none", color: "black"}}>
                   <Typography textAlign="center">Profile</Typography>
               </Link>
                 </MenuItem>
-
-                <MenuItem key="Blogs" onClick={handleCloseUserMenu}>
-              
-              <Link to="/BlogHome" style={{ textDecoration: "none", color: "black"}}>
-                  <Typography textAlign="center">Blogs Section</Typography>
-              </Link>
-                </MenuItem>
-
-                <MenuItem key="Notes" onClick={handleCloseUserMenu}>
-              
-              <Link to="/notes" style={{ textDecoration: "none", color: "black"}}>
-                  <Typography textAlign="center">Notes Section</Typography>
-              </Link>
-                </MenuItem>
-
-              <MenuItem 
-              key={"Logout"} 
+ 
+ 
+              <MenuItem
+              key={"Logout"}
               onClick={()=>{
                 handleLogout();
                 handleCloseUserMenu();
