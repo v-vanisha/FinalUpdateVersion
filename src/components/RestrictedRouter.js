@@ -6,6 +6,6 @@ import { AuthContext } from "../context/auth";
 function RestrictedRouter({ children }) {
     // console.log("Hi! there from Private Route");
     const { user } = useContext(AuthContext);
-    return user ? children : < Navigate to = "/" /> ;
+    return user ? children : < Navigate to = "/login" /> ;
 }
 export default RestrictedRouter;

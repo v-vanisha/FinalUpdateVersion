@@ -30,7 +30,6 @@ function Nexum(){
         <div>
             <Navbar userData={userData}/>
             <Feed userData={userData}/>
-            
         </div>
     )
 }

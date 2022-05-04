@@ -14,6 +14,7 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import nexumLogo from "../assets/nexumLogo.jpg";
+import NexumNewLogo from "../assets/NexumNewLogo.png";
 // import HomeIcon from "@mui/icons-material/Home";
 // import LanguageIcon from "@mui/icons-material/Language";
 // import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
@@ -30,7 +31,7 @@ const pages = ["Home", "Create Post"];
 
 
 const Navbar = ({userData}) => {
-  // console.log(userData);
+  console.log(userData);
   const navigate = useNavigate();
   const { logout } = useContext(AuthContext);
   
@@ -56,11 +57,20 @@ const Navbar = ({userData}) => {
     navigate("/login");
     // console.log("done");
   };
+
+  function handleMouseEnter(e) {
+    e.target.style.color = 'white';
+  }
+  const handleMouseLeave = e => {
+    e.target.style.color = "#3b486b"
+  }
+
+
   return (
     <AppBar
       position="static"
       className="navbar-container"
-      style={{ backgroundColor: "white" }}
+      style={{ backgroundColor: "#9abed8" ,maxHeight:"65px"}}
     >
       <Container maxWidth="xl">
         <Toolbar disableGutters>
@@ -72,9 +82,9 @@ const Navbar = ({userData}) => {
           >
           <Link to ="/">
           <img
-              src={nexumLogo}
+              src={NexumNewLogo}
               alt="nexum"
-              style={{ height: "40px", width: "150px" }}
+              style={{ height: "55px",width:"auto",marginTop:"5px",marginLeft:"60px" }}
             />
           </Link>
             
@@ -123,9 +133,9 @@ const Navbar = ({userData}) => {
             sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}
           >
             <img
-              src={nexumLogo}
+              src={NexumNewLogo}
               alt="nexum"
-              style={{ height: "40px", width: "150px" }}
+              style={{ height: "55px",width:"auto",marginTop:"5px",marginLeft:"60px" }}
             />
           </Typography>
 
@@ -171,82 +181,24 @@ const Navbar = ({userData}) => {
               Blogs
               </Button>
             </Link> */}
-            <Link to="/BlogHome">
-            <Button
+            <Link to="/BlogHome" onMouseOver={handleMouseEnter} onMouseLeave={handleMouseLeave} style={{marginRight:"30px",color:"#3b486b",fontSize:"18px",fontFamily:"initial",fontWeight:"bold"}}>
+            {/* <Button
               variant="contained"
               color="success"
               style={{ height: "50px" }}
-            >
-              Home
-            </Button>
+            > */}
+              HOME
+            {/* </Button> */}
             </Link>
-            <Link to ="/createpost">
-            <Button
+            <Link to ="/createpost" onMouseOver={handleMouseEnter} onMouseLeave={handleMouseLeave} style={{marginRight:"30px",color:"#3b486b",fontSize:"18px",fontFamily:"initial",fontWeight:"bold"}}>
+            {/* <Button
               variant="contained"
               color="success"
               style={{ height: "50px" }}
-            >
-              Create Post
-            </Button>
+            > */}
+              CREATE POST
+            {/* </Button> */}
             </Link>
-          </Box>
-          <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src={userData?.photoUrl}/>
-              </IconButton>
-            </Tooltip>
-            <Menu
-              sx={{ mt: "45px" }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-              {/* {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
-                </MenuItem>
-              ))} */}
-              <MenuItem key="Profile" onClick={handleCloseUserMenu}>
-              
-              <Link to="/profile" style={{ textDecoration: "none", color: "black"}}>
-                  <Typography textAlign="center">Profile</Typography>
-              </Link>
-                </MenuItem>
-
-                <MenuItem key="Blogs" onClick={handleCloseUserMenu}>
-              
-              <Link to="/BlogHome" style={{ textDecoration: "none", color: "black"}}>
-                  <Typography textAlign="center">Blogs Section</Typography>
-              </Link>
-                </MenuItem>
-
-                <MenuItem key="Notes" onClick={handleCloseUserMenu}>
-              
-              <Link to="/Notes" style={{ textDecoration: "none", color: "black"}}>
-                  <Typography textAlign="center">Notes Section</Typography>
-              </Link>
-                </MenuItem>
-
-              <MenuItem 
-              key={"Logout"} 
-              onClick={()=>{
-                handleLogout();
-                handleCloseUserMenu();
-              }}>
-                  <Typography textAlign="center">Logout</Typography>
-                </MenuItem>
-            </Menu>
           </Box>
         </Toolbar>
       </Container>

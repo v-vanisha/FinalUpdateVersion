@@ -4,6 +4,7 @@ import { AuthContext } from "../context/auth";
 import ProfileComp from './ProfileComp'
 import { useNavigate } from "react-router-dom";
 
+
 function Profile(){
     const {user} = useContext(AuthContext)
     const Redirect = ()=>{
@@ -16,7 +17,6 @@ function Profile(){
         {
            user?.uid ? <ProfileComp /> : <Redirect />
         }
-            
         </>
     )
 }
